@@ -45,7 +45,7 @@ export class CollectionComponent implements OnInit {
   //   }
   // ];
 
-  books: Array<Ibook>;
+  books = [];
   showOperatingHours: boolean;
   openingTime: Date;
   closingTime: Date;
@@ -57,8 +57,11 @@ export class CollectionComponent implements OnInit {
     this.closingTime.setHours(15, 0);
     }
 
-  ngOnInit() {
-    this.books = this._dataService.getBooks();
+  ngOnInit(): void {
+    this._dataService.getBooks()
+    .subscribe(books => {
+      this.books.push(books);
+    })
     console.log("Returned Books: ", this.books);
   }
 

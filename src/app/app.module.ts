@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+
 
 import { MatListModule, MatCardModule, MatSlideToggleModule, MatDialogModule, MatIconModule, MatInputModule, MatSnackBarModule,
 MatTabsModule, MatButtonModule, MatLineModule, MatToolbarModule } from '@angular/material';
@@ -38,7 +40,8 @@ import { RatingComponent } from './rating/rating.component';
     MatButtonModule, 
     MatLineModule, 
     MatToolbarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
