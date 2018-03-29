@@ -1,29 +1,35 @@
-<h3>{{ pageTitle }}&nbsp;
-  <mat-slide-toggle class="plr-15" color="primary" [(ngModel)]="showOperatingHours">
-    {{ showOperatingHours ? 'Hide' : 'Show' }} library hours
-  </mat-slide-toggle>
-</h3>
-
-<div [hidden]="!showOperatingHours">
-  <mat-card>
-    <mat-card-subtitle><strong>Operating Hours</strong></mat-card-subtitle>
-    <mat-card-content>{{ openingTime | date:'shortTime'}} - {{ closingTime | date:'shortTime'}} (M-F)</mat-card-content>
-  </mat-card>
+<div class="libHours">
+  <div class="switchDiv">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="showOperatingHours">
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <div class="switchText">
+    <span>{{ showOperatingHours ? 'Hide' : 'Show' }} library hours</span>
+    <span class="searchInput">Search by Book Title: <input class="titleInput" type="text" placeholder="Book Title"><button (click)="findBooks">Search</button></span>
+  </div>
+  <div>
+    
+  </div>
 </div>
 
-<div>
-  <mat-list>
-    <mat-list-item *ngFor="let book of books">
-      <mat-icon mat-list-icon>book</mat-icon>
-      <h3 mat-line><strong>{{ book.title }}</strong></h3>
-      <p mat-line><span>{{ book.author }}</span></p>
-      <!-- <p mat-line>{{ book.rating | ratingCategory}}</p> -->
-      <p mat-line>
-        <my-rating [rating]="book.rating" [book]="book" (ratingClicked)="onRatingUpdate($event)"></my-rating>
-      </p>
-      <p mat-line>
-        <span [class]="book.isCheckedOut ? 'chip chip-danger' : 'chip chip-success'">{{ book.isCheckedOut ? 'Checked-Out' : 'Available'}}</span>
-      </p>
-    </mat-list-item>
-  </mat-list>
+<div [hidden]="!showOperatingHours" class="opHours">
+  <h3><strong>Operating Hours</strong></h3>
+  <p>{{ openingTime | date:'shortTime'}} - {{ closingTime | date:'shortTime'}} (M-F)</p>
 </div>
+
+<div class="bookCard" *ngFor="let book of books[0]">
+  <div class="bookImage">
+    <img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="Book Cover Image">
+  </div>
+  <div class="bookDetails" ng-class="{show: show}">
+    <h3>{{ book.volumeInfo.title }}</h3>
+    <p>Author: {{ book.volumeInfo.authors[0] }}</p>
+    <p>Publisher: {{ book.volumeInfo.publisher }}</p>
+    <p>Published: {{ book.volumeInfo.publishedDate | date: 'longDate'}}</p>
+    <p>Pages: {{ book.volumeInfo.pageCount }}</p>
+    <p *ngIf="book.volumeInfo.description != null">Description: <a href="">Show</a></p>
+  </div>
+</div>
+

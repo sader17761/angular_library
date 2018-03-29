@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ibook } from '../ibook';
 import { MatSnackBar } from '@angular/material';
 import { DataService } from '../services/data.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'my-collection',
@@ -46,9 +47,12 @@ export class CollectionComponent implements OnInit {
   // ];
 
   books = [];
+  allBooks = [];
   showOperatingHours: boolean;
   openingTime: Date;
   closingTime: Date;
+  limit: number;
+  moreShown: boolean;
 
   constructor(private _snackBar: MatSnackBar, private _dataService: DataService) {
     this.openingTime = new Date();
@@ -58,11 +62,13 @@ export class CollectionComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.limit = 120; 
+    this.moreShown = false;
     this._dataService.getBooks()
     .subscribe(books => {
-      this.books.push(books);
+      this.books.push(books.items);
     })
-    console.log("Returned Books: ", this.books);
+    console.log("Book List: ", this.books);
   }
 
   updateMessage(message: string, type: string): void {

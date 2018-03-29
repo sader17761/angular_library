@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class DataService {
-
+  _googleBookApi: string = "https://www.googleapis.com/books/v1/volumes?q=Rowling"
   _booksUrl: string = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json";
   _apiKey: string = "169f33c61d314ddda32ffdb03b7416b7";
   _age: number = 7;
@@ -23,8 +23,7 @@ export class DataService {
   }
 
   getBooks(): Observable<any>{
-    console.log("Getting Books from Service.");
-    return this._http.get(`${this._booksUrl}?api-key=${this._apiKey}&age-group=${this._age}`)
+    return this._http.get(`${this._googleBookApi}`)
     .map(response => response.json());
   }
 

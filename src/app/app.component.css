@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.headerDiv {
+    width: 100vs;
+    height: 25px;
+    padding: 10px 0 10px 25px;
+    margin: 20px 0;
+    background-color: rgb(240, 59, 14);
+}
+
+.headerDiv h1 {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+}
+
+img {
+    float: right;
+    width: 70px;
+    margin: -47px 30px 0 0;
+}
