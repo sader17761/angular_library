@@ -14,38 +14,6 @@ export class CollectionComponent implements OnInit {
 
   pageTitle: string;
 
-  // MOVED TO THE SERVICE
-  // books: Array<Ibook> = [
-  //   {
-  //     id: 1,
-  //     title: "JavaScript - The Good Parts",
-  //     author: "Douglas Crockford",
-  //     isCheckedOut: true,
-  //     rating: 3
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "The Wind in the Willows",
-  //     author: "Kenneth Grahame",
-  //     isCheckedOut: false,
-  //     rating: 4
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Pillars of the Earth",
-  //     author: "Ken Follett",
-  //     isCheckedOut: true,
-  //     rating: 5
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Harry Potter and the Prisoner of Azkaban",
-  //     author: "J.K. Rowling",
-  //     isCheckedOut: false,
-  //     rating: 5
-  //   }
-  // ];
-
   books = [];
   allBooks = [];
   showOperatingHours: boolean;
@@ -53,6 +21,8 @@ export class CollectionComponent implements OnInit {
   closingTime: Date;
   limit: number;
   moreShown: boolean;
+  inputValue = "";
+  src = "";
 
   constructor(private _snackBar: MatSnackBar, private _dataService: DataService) {
     this.openingTime = new Date();
@@ -62,25 +32,40 @@ export class CollectionComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.limit = 120; 
-    this.moreShown = false;
-    this._dataService.getBooks()
+    // this.limit = 120; 
+    // this.moreShown = false;
+    // this._dataService.getBooks()
+    // .subscribe(books => {
+    //   this.books.push(books.items);
+    // })
+    // console.log("Book List: ", this.books);
+  }
+
+  searchBooks(input: string): void {
+    console.log("Search for: ", this.inputValue);
+    this.books = [];
+    this._dataService.getBooks(input)
     .subscribe(books => {
       this.books.push(books.items);
     })
-    console.log("Book List: ", this.books);
+    console.log("Returned Books: ", this.books);
   }
 
-  updateMessage(message: string, type: string): void {
-    if(message) {
-      this._snackBar.open(`${type}: ${message}`, 'DISMISS', {
-        duration: 3000
-      });
-    }
+  updateUrl(event) {
+    console.log("Event: ", event)
+    this.src = "assets/no-cover.png";
   }
 
-  onRatingUpdate(book: Ibook): void {
-    this.updateMessage(book.title, "Rating has been updated");
-  }
+  // updateMessage(message: string, type: string): void {
+  //   if(message) {
+  //     this._snackBar.open(`${type}: ${message}`, 'DISMISS', {
+  //       duration: 3000
+  //     });
+  //   }
+  // }
+
+  // onRatingUpdate(book: Ibook): void {
+  //   this.updateMessage(book.title, "Rating has been updated");
+  // }
 
 }

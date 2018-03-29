@@ -5,12 +5,14 @@
       <span class="slider round"></span>
     </label>
   </div>
-  <div class="switchText">
-    <span>{{ showOperatingHours ? 'Hide' : 'Show' }} library hours</span>
-    <span class="searchInput">Search by Book Title: <input class="titleInput" type="text" placeholder="Book Title"><button (click)="findBooks">Search</button></span>
+
+  <div class="sliderTextDiv">
+    <p class="hideShowText">{{ showOperatingHours ? 'Hide' : 'Show' }} library hours</p>
   </div>
-  <div>
-    
+
+  <div class="bookSearchDiv">
+    <span class="material-icons" (click)="searchBooks(textbox.value)">search</span>
+    <input class="titleInput" type="text" placeholder="Search by Book Title or Author..." #textbox [(ngModel)]="inputValue">
   </div>
 </div>
 
@@ -21,11 +23,12 @@
 
 <div class="bookCard" *ngFor="let book of books[0]">
   <div class="bookImage">
-    <img src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="Book Cover Image">
+    <img *ngIf="book.volumeInfo.hasOwnProperty('imageLinks')" src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="">
+    <img *ngIf="!book.volumeInfo.hasOwnProperty('imageLinks')" src="assets/no-cover.png" alt="">
   </div>
   <div class="bookDetails" ng-class="{show: show}">
     <h3>{{ book.volumeInfo.title }}</h3>
-    <p>Author: {{ book.volumeInfo.authors[0] }}</p>
+    <p>Author: {{ book.volumeInfo.authors }}</p>
     <p>Publisher: {{ book.volumeInfo.publisher }}</p>
     <p>Published: {{ book.volumeInfo.publishedDate | date: 'longDate'}}</p>
     <p>Pages: {{ book.volumeInfo.pageCount }}</p>

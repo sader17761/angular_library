@@ -32,24 +32,32 @@
     padding: 8px 65px;
 }
 
-.hoursToggle {
-    margin-left:
-}
-
 .searchInput {
     float: right;
 }
 
 .titleInput {
-    width: 250px;
-    height: 26px;
+    width: 290px;
+    height: 32px;
 }
 
+ input[type="text"] {
+     font-size: 14px;
+     padding-left: 5px;
+ }
+
 button {
-    width: 100px;
-    height: 32px;
-    margin-left: 10px;
+    width: 60px;
+    height: 42px;
+    margin-left: 5px;
     padding: 0;
+}
+
+.material-icons {
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
 }
 
 h3, h4, p{
@@ -126,16 +134,26 @@ h3, h4, p{
 
 
 .libHours {
-    margin: 0 auto 30px auto;
+    margin: 0 auto 20px auto;
     width: 1360px;
     height: 40px;
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 .switchDiv {
     margin: 0;
     float: left;
-    width: 4%;
+    width: 50px;
+    height: 36px;
+    padding-top: 4px;
+    /* background-color: purple; */
+}
+
+.sliderTextDiv {
+    width: 140px;
+    height: 40px;
+    float: left;
+    /* background-color: yellow; */
 }
 
 .switchText {
@@ -143,6 +161,26 @@ h3, h4, p{
     float: left;
     width: 96%;
     padding-top:6px;
+}
+
+.hideShowText {
+    margin-top: 6px;
+}
+
+.bookSearchDiv {
+    width: 300px;
+    height: 40px;
+    float: right;
+    /* background-color: orange; */
+}
+
+.bookSearchDiv .material-icons {
+    position: absolute;
+    top: 91px;
+    left: 1366px;
+    font-weight: bold;
+    font-size: 26px;
+    color: rgb(156, 156, 156);
 }
 
 
