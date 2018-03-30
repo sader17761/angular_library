@@ -16,6 +16,7 @@ import { CollectionComponent } from './collection/collection.component';
 import { RatingCategoryPipe } from './pipes/rating-category.pipe';
 import { RatingComponent } from './rating/rating.component';
 import { LimitPipe } from './pipes/limit.pipe';
+import { BookDetailComponent } from './book-detail/book-detail.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LimitPipe } from './pipes/limit.pipe';
     CollectionComponent,
     RatingCategoryPipe,
     RatingComponent,
-    LimitPipe
+    LimitPipe,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { LimitPipe } from './pipes/limit.pipe';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [BookDetailComponent]
 })
 export class AppModule { }

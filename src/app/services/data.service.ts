@@ -8,10 +8,11 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class DataService {
-  _googleBookApi: string = "https://www.googleapis.com/books/v1/volumes?q="
-  _booksUrl: string = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json";
+  _googleBookApi: string = "https://www.googleapis.com/books/v1/volumes?"
+  //_booksUrl: string = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json";
   _apiKey: string = "169f33c61d314ddda32ffdb03b7416b7";
   _age: number = 7;
+  _bookDetails = {};
 
   constructor(private _http: Http) { }
 
@@ -23,8 +24,19 @@ export class DataService {
   }
 
   getBooks(input: string): Observable<any>{
-    return this._http.get(`${this._googleBookApi}` + input + '&maxResults=40&orderBy=newest')
+    return this._http.get(`${this._googleBookApi}` + 'q=' + input + '&maxResults=40&orderBy=newest')
     .map(response => response.json());
+  }
+
+  getBook(id: string): Observable<any> {
+    console.log("Passed Id: ", id)
+    return this._http.get(`${this._googleBookApi}` + 'q=' + id)
+    .map(response => response.json());
+  }
+
+  postBookDetails(book: object) {
+    this._bookDetails = book;
+    console.log("Book details passed to service: ", this._bookDetails);
   }
 
 }
