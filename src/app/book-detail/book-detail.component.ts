@@ -19,15 +19,6 @@ export class BookDetailComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private _router: Router, private _dataService: DataService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    // if(!this.bookId) {
-    //   this.sub = this._route.params.subscribe(
-    //     params => {
-    //       let id = params['id'];
-    //       this.getBook(id);
-    //     });
-    //     return;
-    // }
-    // this.getBook(this.bookId);
   }
 
   ngOnDestroy(): void {
@@ -35,11 +26,5 @@ export class BookDetailComponent implements OnInit {
       this.sub.unsubscribe();
     }
   }
-
-  // getBook(id: string): void {
-  //   this._dataService.getBook(id).subscribe(
-  //     book => this.book = book)
-  //     //error => this.updateMessage(<any>error, 'Error'));
-  // }
 
 }

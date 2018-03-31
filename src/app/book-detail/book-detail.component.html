@@ -1,66 +1,58 @@
 <div *ngIf="book">
   <mat-card>
-    <mat-card-header>
-      <mat-card-title><h4>{{book.volumeInfo.title}}</h4></mat-card-title>
+    <div class="coverDiv">
+      <img mat-card-avatar *ngIf="book.volumeInfo.hasOwnProperty('imageLinks')" src="{{book.volumeInfo.imageLinks.smallThumbnail}}"
+        alt="">
+      <img mat-card-avatar *ngIf="!book.volumeInfo.hasOwnProperty('imageLinks')" src="assets/no-cover.png" alt="">
+      <a href="{{book.volumeInfo.previewLink}}" class="previewBtn" target="_blank"><i class="material-icons bookIcon">import_contacts</i> Preview Book</a>
+    </div>
+    <div class="detailInfoDiv">
+      <mat-card-title>
+        <h4>{{book.volumeInfo.title}}</h4>
+      </mat-card-title>
       <mat-card-subtitle>{{book.volumeInfo.authors}}</mat-card-subtitle>
-      <img mat-card-avatar src="assets/book.png" alt="">
-    </mat-card-header>
-    <mat-card-content>
-      <div>
-        <label for="">
-          <strong>Book Id:</strong>
-        </label>
-        <span>{{book.id}}</span>
-      </div>
-      <div>
-        <label for="">
-          <strong>Category:</strong>
-        </label>
-        <span>{{book.volumeInfo.categories}}</span>
-      </div>
-      <div>
-        <label for="">
-          <strong>Language:</strong>
-        </label>
-        <span>{{book.volumeInfo.language}}</span>
-      </div>
-      <div>
-        <label for="">
-          <strong>Maturity Rating:</strong>
-        </label>
-        <span>{{book.volumeInfo.maturityRating}}</span>
-      </div>
-      <div>
-        <label for="">
-          <strong>Page Count:</strong>
-        </label>
-        <span>{{book.volumeInfo.pageCount}}</span>
-      </div>
-      <div>
-        <label for="">
-          <strong>Publish Date:</strong>
-        </label>
-        <span>{{book.volumeInfo.publishDate}}</span>
-      </div>
-      <div>
-        <label for="">
-          <strong>Publisher:</strong>
-        </label>
-        <span>{{book.volumeInfo.publisher}}</span>
-      </div>
-      <div *ngIf="book.volumeInfo.subtitle">
-        <label for="">
-          <strong>Subtitle:</strong>
-        </label>
-        <span>{{book.volumeInfo.subtitle}}</span>
-      </div>
-      <div>
-        <label for="">
-          <strong>Description:</strong>
-        </label>
-        <span>{{book.volumeInfo.description}}</span>
-      </div>
-    </mat-card-content>
+      <mat-card-content>
+
+        <table style="width: 690px" cellspacing="10">
+          <tbody>
+            <tr>
+              <td class="col-1">Category:</td>
+              <td class="col-2">{{book.volumeInfo.categories}}</td>
+            </tr>
+            <tr>
+              <td class="col-1">Language:</td>
+              <td class="col-2">{{book.volumeInfo.language == 'en' ? 'English' : 'Other'}}</td>
+            </tr>
+            <tr>
+              <td class="col-1">Maturity Rating:</td>
+              <td class="col-2">{{book.volumeInfo.maturityRating}}</td>
+            </tr>
+            <tr>
+              <td class="col-1">Page Count:</td>
+              <td class="col-2">{{book.volumeInfo.pageCount}}</td>
+            </tr>
+            <tr>
+              <td class="col-1">Publisher:</td>
+              <td class="col-2">{{book.volumeInfo.publisher}}</td>
+            </tr>
+            <tr *ngIf="book.volumeInfo.publishDate">
+              <td class="col-1">Publish Date:</td>
+              <td class="col-2">{{book.volumeInfo.published}}</td>
+            </tr>
+            <tr *ngIf="book.volumeInfo.subtitle">
+              <td class="col-1">Subtitle:</td>
+              <td class="col-2">{{book.volumeInfo.subtitle}}</td>
+            </tr>
+            <tr *ngIf="book.volumeInfo.description">
+              <td class="col-1">Description:</td>
+              <td class="col-2">{{book.volumeInfo.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </mat-card-content>
+    </div>
+
     <mat-card-actions>
       <div class="text-right">
         <button mat-button mat-dialog-close *ngIf="book">

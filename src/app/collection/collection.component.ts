@@ -35,40 +35,18 @@ export class CollectionComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    // this.limit = 120; 
-    // this.moreShown = false;
-    // this._dataService.getBooks()
-    // .subscribe(books => {
-    //   this.books.push(books.items);
-    // })
-    // console.log("Book List: ", this.books);
   }
 
   openDialog(book: object): void {
     this._bookDetails = book;
     console.log("Details returned: ", this._bookDetails)
-    let config = {width: '650px', height: 'auto', position: {top: '50px'}};
+    let config = {width: '1020px', height: 'auto', position: {top: '50px'}};
     let dialogRef = this._dialog.open(BookDetailComponent, config);
     dialogRef.componentInstance.book = book;
     dialogRef.afterClosed().subscribe(res => {
       
     })
   }
-
-  // openDialog(bookID: string): void {
-  //   console.log("Book ID: ", bookID)
-  //   this._dataService.getBook(bookID)
-  //     .subscribe(book => {
-  //       this._bookDetails = book;
-  //     });
-  //   console.log("Details returned: ", this._bookDetails)
-  //   let config = { width: '650px', height: '400px', position: { top: '50px' } };
-  //   let dialogRef = this._dialog.open(BookDetailComponent, config);
-  //   dialogRef.componentInstance.bookId = bookID;
-  //   dialogRef.afterClosed().subscribe(res => {
-
-  //   })
-  // }
 
   searchBooks(input: string): void {
     console.log("Search for: ", this.inputValue);
@@ -79,10 +57,6 @@ export class CollectionComponent implements OnInit {
     })
     console.log("Returned Books: ", this.books);
   }
-
-  // getDetails(id: string) {
-  //   console.log("Book Id: ", id);
-  // }
 
   updateUrl(event) {
     console.log("Event: ", event)
@@ -95,17 +69,5 @@ export class CollectionComponent implements OnInit {
       this.searchBooks(input);
     }
   }
-
-  // updateMessage(message: string, type: string): void {
-  //   if(message) {
-  //     this._snackBar.open(`${type}: ${message}`, 'DISMISS', {
-  //       duration: 3000
-  //     });
-  //   }
-  // }
-
-  // onRatingUpdate(book: Ibook): void {
-  //   this.updateMessage(book.title, "Rating has been updated");
-  // }
 
 }
