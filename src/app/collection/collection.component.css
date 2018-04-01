@@ -172,6 +172,40 @@ h3, h4, p{
     font-size: 20px;
 }
 
+.titleDiv {
+    max-width: 1200px;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.lineDiv {
+    float: left;
+    width: 41%;
+    height: 17px;
+    border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+.searchTitleDiv {
+    /* font-family: 'Crimson Text', serif; */
+    float: left;
+    width: 18%;
+    height: 30px;
+    margin: 0 auto;
+    font-size: 22px;
+    font-weight: 100;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

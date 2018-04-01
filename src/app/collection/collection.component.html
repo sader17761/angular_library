@@ -27,6 +27,12 @@
   <h3><i class="material-icons">highlight_off</i> Currently no books match your search.</h3>
 </div>
 
+<div class="titleDiv" *ngIf="books.length != 0">
+  <div class="lineDiv"></div>
+  <div class="searchTitleDiv"><p>Your Search Results</p></div>
+  <div class="lineDiv"></div>
+</div>
+
 <div class="bookCard" *ngFor="let book of books[0]">
   <div class="bookImage">
     <img *ngIf="book.volumeInfo.hasOwnProperty('imageLinks')" src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="">
